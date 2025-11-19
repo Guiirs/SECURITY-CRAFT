@@ -1,0 +1,11 @@
+# Normalização de line endings
+* text=auto
+
+# Lua files
+*.lua text eol=lf
+
+# Documentation
+*.md text eol=lf
+
+# Scripts
+*.sh text eol=lf
