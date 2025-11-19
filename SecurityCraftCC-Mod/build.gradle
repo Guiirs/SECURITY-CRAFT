@@ -1,0 +1,79 @@
+plugins {
+    id 'java'
+    id 'net.minecraftforge.gradle' version '5.1.+'
+}
+
+version = '1.0.0'
+group = 'com.guiirs.scccompat'
+archivesBaseName = 'securitycraft-cc-compat'
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+
+minecraft {
+    mappings channel: 'official', version: '1.19.2'
+    
+    runs {
+        client {
+            workingDirectory project.file('run')
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'debug'
+            
+            mods {
+                scccompat {
+                    source sourceSets.main
+                }
+            }
+        }
+        
+        server {
+            workingDirectory project.file('run')
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'debug'
+            
+            mods {
+                scccompat {
+                    source sourceSets.main
+                }
+            }
+        }
+    }
+}
+
+repositories {
+    maven {
+        name = "CC:Tweaked"
+        url = "https://squiddev.cc/maven/"
+    }
+    maven {
+        name = "CurseForge"
+        url = "https://www.cursemaven.com"
+    }
+}
+
+dependencies {
+    minecraft 'net.minecraftforge:forge:1.19.2-43.3.0'
+    
+    // CC:Tweaked dependency
+    implementation fg.deobf("org.squiddev:cc-tweaked-1.19.2-forge:1.101.3")
+    
+    // SecurityCraft dependency (você precisará do JAR do SecurityCraft)
+    // implementation fg.deobf("curse.maven:security-craft-64760:file-id")
+    compileOnly files('libs/securitycraft-1.19.2.jar')
+}
+
+jar {
+    manifest {
+        attributes([
+            "Specification-Title": "SecurityCraft CC:Tweaked Compatibility",
+            "Specification-Vendor": "Guiirs",
+            "Specification-Version": "1",
+            "Implementation-Title": project.name,
+            "Implementation-Version": project.version,
+            "Implementation-Vendor": "Guiirs"
+        ])
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
