@@ -6,6 +6,9 @@ local REPO_NAME = "SECURITY-CRAFT"
 local BRANCH = "master"
 
 local files = {
+    {name = "integration_test.lua", desc = "Detector de Integracao"},
+    {name = "hybrid_system.lua", desc = "Sistema Hibrido (RECOMENDADO)"},
+    {name = "camera_redstone.lua", desc = "Controle via Redstone"},
     {name = "camera_monitor.lua", desc = "Monitor Simples"},
     {name = "camera_grid.lua", desc = "Grade de Cameras"},
     {name = "camera_advanced.lua", desc = "Sistema Avancado"}
